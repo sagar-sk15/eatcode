@@ -34,9 +34,10 @@ namespace Csharp
         //    new Test(){ A = 2, B = "B2" }
         //};
 
-        // Two 2D/rectangular array with same Number of columns in every row
+        // Two 2D/rect angular array with same Number of columns in every row
         //one [] with comma
         // size is optional column length is same for every row
+        //[row, column]
         string[,] twoDArray = new string[,]
         {
             {"s","k"},
@@ -58,7 +59,7 @@ namespace Csharp
 
         //column in each row may differ
         // two [] []
-        //size for row is optional //column size can not be given
+        //size for column is optional //column size can not be given
         // new string/int [] is required within new {} i.e. single dimensional array defn withing new of jagged array
         string[][] jagged = new string[2][] {
         new string[] {"val1","val2"},
@@ -183,6 +184,7 @@ namespace Csharp
 // Writing safe code also means to prevent data loss during conversion of one type to another
 //e.g : 
 public class MyType
+
 {
     public int Prop { get; set; }
 }
@@ -191,8 +193,9 @@ public class YourType
     public int Prop { get; set; }
     public int Prop1 { get; set; }
 
-    
+
 }
+
 //MyType obj = new MyType();obj would be referencing the 4 bytes of space 
 //YourType obj1 = (YourType)obj; // Here we will get compile time error  
 

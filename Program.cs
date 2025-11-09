@@ -10,6 +10,16 @@ namespace LeetCode
         static char[] count = new char[256];
         static void Main(string[] args)
         {
+            var cache = new LRUCache(2);
+
+            cache.Set("user1", "Alex");
+            cache.Set("user2", "Brian");
+            cache.Set("user3", "Chris");
+
+            Console.WriteLine(cache.Get("user1")); // Output: null (evicted)
+            Console.WriteLine(cache.Get("user2")); // Output: Brian
+            Console.WriteLine(cache.Get("user3")); // Output: Chris
+
             string[] ss = { "Hello", "World" };
 
             //isPalindrome("sagar");
@@ -19,7 +29,7 @@ namespace LeetCode
             //checkIfstringHasPalindrome("abcccba");
             //checkIfOneAway("pall", "pale");
             //CompareS("aabcccccaaa");
-            //ReverseWords1("Hello world");
+            //var str1 = displayReverse("Hello world");
 
             // Rec Fibo
             //for (int i = 0; i <= 5; i++)
@@ -44,27 +54,38 @@ namespace LeetCode
 
             //Single Linked List
             SLL llist = new SLL();
-            //SLL[] lists = new SLL[4];
+            SLL[] lists = new SLL[4];
 
-            //lists[0] = new SLL();
-            //lists[0].AddDataToLast(1);
-            //lists[0].AddDataToLast(4);
-            //lists[0].AddDataToLast(5);
+            lists[0] = new SLL();
+            llist.AddDataToLast(1);
+            llist.AddDataToLast(4);
+            llist.AddDataToLast(5);
+            //llist.Reverse();
+            lists[1] = new SLL();
+            lists[1].AddDataToLast(1);
+            lists[1].AddDataToLast(3);
+            lists[1].AddDataToLast(4);
 
-            //lists[1] = new SLL();
-            //lists[1].AddDataToLast(1);
-            //lists[1].AddDataToLast(3);
-            //lists[1].AddDataToLast(4);
+            lists[2] = new SLL();
+            lists[2].AddDataToLast(2);
+            lists[2].AddDataToLast(6);
 
-            //lists[2] = new SLL();
-            //lists[2].AddDataToLast(2);
-            //lists[2].AddDataToLast(6);
-
-            //lists[3] = new SLL();
-            //lists[3].AddDataToLast(9);
-            //lists[3].AddDataToLast(1);
+            lists[3] = new SLL();
+            lists[3].AddDataToLast(9);
+            lists[3].AddDataToLast(1);
 
             //llist.MergeKLists(lists);
+
+
+            ListNode[] listsNodes = new ListNode[]
+            {
+            ListNode.BuildList(new int[] { 1, 4, 5 }),
+            ListNode.BuildList(new int[] { 1, 3, 4 }),
+            ListNode.BuildList(new int[] { 2, 6 })
+            };
+
+            //llist.MergeKListUsingPriorityQueue(listsNodes);
+
             //llist.push(1);
             //llist.push(2);
             //llist.push(3);
@@ -87,7 +108,7 @@ namespace LeetCode
             llist2.AddDataToLast(2);
             llist2.AddDataToLast(1);
             //llist2.RemoveZeroSumSublists(llist2.head);
-            llist2.IsPalindrome(llist2.head);
+            //llist2.IsPalindrome(llist2.head);
             //llist.GetIntersectionNodeHashSet(llist.head, llist2.head);
             //llist.AddDataToLast(5);
             //llist.AddDataToLast(6);
@@ -136,7 +157,9 @@ namespace LeetCode
             //SingleNumber(nums);
             // titleToNumber("YZ");
 
-            int[] array = { 5, 1, 4, 2 };
+            int[] array = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+            //SubarraySum(array, 3);
+            RemoveDuplicates(array);
             //ArrayofProducts(array);
             //SortedArrayToBST(nums);
             //sortedArrayToBSTRecursion(nums, 0, nums.Length - 1);
@@ -160,7 +183,14 @@ namespace LeetCode
             tree.root.right.left = new TreeNode(6);
             //Connect(tree.root);
 
-            //Console.WriteLine("Height of tree is : " + IsValidBST(tree.root));
+
+            BinaryTree bst = new BinaryTree();
+            bst.root = new TreeNode(4);
+            bst.root.left = new TreeNode(1);
+            bst.root.right = new TreeNode(5);
+            bst.root.right.right = new TreeNode(6);
+            bst.root.right.left = new TreeNode(3);
+            //Console.WriteLine("Valid BST  : " + IsValidBST(bst.root));
             //LowestCommonAncestor(tree.root, tree.root.left, tree.root.right.left);
 
             //BinaryTree tree = new BinaryTree();
@@ -220,6 +250,9 @@ namespace LeetCode
 
             string[] str = { "flower", "flow", "flight" };
 
+            string[] logs = { "88 99 200", "88 99 300", "99 32 100", "12 12 15" };
+            //processLogs(new List<string>(logs), 2);
+
             //LongestCommonPrefix(str);
             //longestCommonPrefix(str);
 
@@ -234,7 +267,7 @@ namespace LeetCode
             //RoundingEg();
 
             // Creating a graph with 5 vertices
-            int V = 3;
+            int V = 4;
             LinkedList<int>[] adj = new LinkedList<int>[V];
 
             for (int i = 0; i < V; i++)
@@ -251,10 +284,11 @@ namespace LeetCode
 
             addEdgedirected(adj, 0, 1);
             addEdgedirected(adj, 1, 2);
-            addEdgedirected(adj, 2, 0);
-            //addEdgedirected(adj, 3, 2);
-            //addEdgedirected(adj, 4, 3);
-            bool val = isCyclic(V, adj);
+            addEdgedirected(adj, 0, 2);
+            addEdgedirected(adj, 2, 3);
+            //addEdgedirected(adj, 4, 3);            
+            //bool val = isCyclic(V, adj);
+
             //BFS(adj, 2);
             //DFS(adj, 2);
 
@@ -357,7 +391,7 @@ namespace LeetCode
             //SetZeroesConstantSpace(rotatem);
             //SetZeroesNSpace(rotatem);
 
-            //MergeSort(new List<int>() { 5,7,23,9,1,50,0});
+            //MergeSort(new List<int>() { 5,7,23,9,1,50,0});                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
             char[] tasks = { 'A', 'A', 'A', 'B', 'B', 'B', };
             //TaskScheduler(tasks, 2);
@@ -366,11 +400,108 @@ namespace LeetCode
             //WaterTrap(height);
 
             string[] strs = ["act", "pots", "tops", "cat", "stop", "hat"];
-            GroupAnagramsWithOutSorting(strs);
+            // GroupAnagramsWithOutSorting(strs);
 
+            str = ["hello", "wordl"];
+            //string result = Serialize(new List<string>(str));
+            //Deserialize(result);
+
+            string st = "clementisacap";
+            //LongestSubstringWithoutDuplication(st);
+            //RemoveDuplicates("aba", 2);
+            //LongestPalindromeSubstringExp("abaxyzzyxf");
+            LengthOfLongestSubstring_HashSet(st);
+
+            int[] arr = { 1, 4, 5, 2, 3, 7, 8, 6, 10, 9 };
+            int k = 2;
+            //int[] result = SortKMessedArrayInsertionSort(arr, k);
+            //Console.WriteLine(string.Join(", ", result));
+
+
+            int[][] friends = new int[][]
+            {
+            new int[] {0, 1, 0},
+            new int[] {1, 0, 1},
+            new int[] {0, 1, 0}
+            };
+
+            //Console.WriteLine(FriendDistance(friends, 0, 1)); // Output: 1
+            //Console.WriteLine(FriendDistance(friends, 0, 2)); // Output: 2
+
+            string[] sentence1 = { "i", "really", "love", "leetcode", "and", "apples" };
+            string[] sentence2 = { "i", "so", "like", "codesignal", "and", "oranges" };
+            string[][] similarPairs = {
+            new string[] { "very", "so" },
+            new string[] { "love", "adore" },
+            new string[] { "really", "very" },
+            new string[] { "leetcode", "codesignal" },
+            new string[] { "apples", "oranges" },
+            new string[] { "like", "adore" }
+        };
+
+            //bool result = AreSentencesSimilar(sentence1, sentence2, similarPairs);
+            //Console.WriteLine(result); // Expected: true
+
+            // debug your code below
+            int numCourses = 3;
+
+            int[][] prerequisites = new int[][]
+       {
+
+            new int[] {2, 1},
+            new int[] {1, 0},
+
+       };
+            //Console.WriteLine(CanFinish(numCourses, prerequisites));
+
+
+            int[] preorder = { 3, 9, 20, 15, 7 };
+            int[] inorder = { 9, 3, 15, 20, 7 };
+            //BuildTree(preorder, inorder);
+
+            Trie trie = new Trie();
+
+            //trie.Insert("cat");
+            //trie.Insert("car");
+
+            //Console.WriteLine("Search cat: " + trie.Search("cat"));   // True
+            //Console.WriteLine("Search car: " + trie.Search("car"));   // True
+            //Console.WriteLine("Search cap: " + trie.Search("cap"));   // False
+            //Console.WriteLine("StartsWith ca: " + trie.StartsWith("ca")); // True
+            //Console.WriteLine("StartsWith dog: " + trie.StartsWith("dog")); // False
+
+            //var a = Subsets(new[] { 2, 4, 3 });
+
+            Node[] nodes = new Node[13];
+            int[] costs = { 0, 3, 6, 4, 2, 0, 1, 10, 3, 0, 1, 0, 5 };
+            for (int i = 0; i < 13; i++)
+                nodes[i] = new Node(costs[i]);
+
+            // Connect children according to [[5,3,6],[4],[2,0],[1,5],[],[],[1],[10],[3],[],[1],[],[4]]
+            var deep1 = new Node(1) { children = new[] { new Node(1) } };
+            var n2 = new Node(2) { children = new[] { deep1 } };
+            var n0 = new Node(0) { children = new[] { new Node(10) } };
+            var n3 = new Node(3) { children = new[] { n2, n0 } };
+
+            // left branch: 0 -> 5 -> 4
+            var n5_left = new Node(5) { children = new[] { new Node(4) } };
+
+            // right branch: 0 -> 6 -> (1, 5)
+            var n6 = new Node(6) { children = new[] { new Node(1), new Node(5) } };
+
+            // root: children are 5, 3, 6
+            var roots = new Node(0) { children = new[] { n5_left, n3, n6 } };
+
+            //var res = GetCheapestCost(roots);
+
+            //Permute(new int[] {1,2,3});
+            //CombinationSum2(new int[] { 1, 1, 2 }, 2);
+
+            knapsack(new int[] { 10, 20, 30 }, new int[] { 60, 100, 120 }, 50);
         }
 
         #region Problems 
+
         //Shopping Pattern
         private static int getShoppingPatternsTrioMinimum(int numOfProducts, int[] products_from, int[] products_to)
         {
@@ -409,46 +540,6 @@ namespace LeetCode
             }
 
             return count;
-        }
-
-        //Merge two sorted single linked list
-        public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
-        {
-            if (l1 == null && l2 == null)
-                return null;
-
-            if (l1 == null && l2 != null)
-            {
-                return l2;
-            }
-            else if (l1 != null && l2 == null)
-            {
-                return l1;
-            }
-
-            var newHead = new ListNode(0);
-            ListNode resultNode = newHead;
-
-            while (l1 != null && l2 != null)
-            {
-                if (l1.val <= l2.val)
-                {
-                    resultNode.next = l1;
-                    l1 = l1.next;
-                }
-                else
-                {
-                    resultNode.next = l2;
-                    l2 = l2.next;
-                }
-
-                resultNode = resultNode.next;
-            }
-
-            if (l1 != null) resultNode.next = l1;
-            if (l2 != null) resultNode.next = l2;
-
-            return newHead.next;
         }
 
         /// <summary>
@@ -538,86 +629,6 @@ namespace LeetCode
 
         }
 
-        #region General Parenthesis Backtracking Approach
-        public static List<String> generateParenthesis(int n)
-        {
-            List<String> ans = new List<String>();
-            backtrack(ans, "", 0, 0, n);
-            return ans;
-        }
-
-        public static void backtrack(List<String> ans, string cur, int open, int close, int max)
-        {
-            if (cur.Length == max * 2)
-            {
-                ans.Add(cur);
-                return;
-            }
-
-            if (open < max)
-                backtrack(ans, cur + "(", open + 1, close, max);
-            if (close < open)
-                backtrack(ans, cur + ")", open, close + 1, max);
-        }
-
-        #endregion General Parenthesis Backtracking Approach
-
-        #region General Parenthesis Brute Force Approach
-        public static List<String> generateParenthesisBruteForce(int n)
-        {
-            List<String> combinations = new List<String>();
-            generateAll(new char[2 * n], 0, combinations);
-            return combinations;
-        }
-
-        public static void generateAll(char[] current, int pos, List<String> result)
-        {
-            if (pos == current.Length)
-            {
-                if (valid(current))
-                    result.Add(new String(current));
-            }
-            else
-            {
-                current[pos] = '(';
-                generateAll(current, pos + 1, result);
-                current[pos] = ')';
-                generateAll(current, pos + 1, result);
-            }
-        }
-
-        public static Boolean valid(char[] current)
-        {
-            int balance = 0;
-            foreach (char c in current)
-            {
-                if (c == '(') balance++;
-                else balance--;
-                if (balance < 0) return false;
-            }
-            return (balance == 0);
-        }
-        #endregion
-
-        #region General Parenthesis Substring Approach
-        public static List<String> generateParenthesisHash(int n)
-        {
-            if (n == 1) return new List<String>() { "()" };
-
-            HashSet<String> set = new HashSet<String>();
-
-            foreach (String str in generateParenthesisHash(n - 1))
-            {
-                for (int i = 0; i < str.Length; i++)
-                {
-                    set.Add(str.Substring(0, i + 1) + "()" + str.Substring(i + 1, (str.Length - (i + 1))));
-                }
-            }
-
-            return new List<string>(set);
-        }
-        #endregion
-
         public static bool ContainsNearbyAlmostDuplicate(int[] nums, int k, int t)
         {
             if (t < 0) return false;
@@ -671,105 +682,168 @@ namespace LeetCode
 
         }
         #endregion Problems
-    }}
+    }
+}
 
-    public class TreeNode
+public class TreeNode
+{
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
+    public TreeNode next;
+    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null, TreeNode next = null)
     {
-        public int val;
-        public TreeNode left;
-        public TreeNode right;
-        public TreeNode next;
-        public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null, TreeNode next = null)
+        this.val = val;
+        this.left = left;
+        this.right = right;
+        this.next = next;
+    }
+}
+
+public class BinaryTree
+{
+    public TreeNode root;
+
+    //Maximum depth of a tree Recursive
+
+
+
+}
+
+public class MergeList
+{
+
+    public ListNode head;
+    public void addToTheLast(ListNode node)
+    {
+        if (head == null)
         {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-            this.next = next;
+            head = node;
+        }
+        else
+        {
+            ListNode temp = head;
+            while (temp.next != null)
+                temp = temp.next;
+            temp.next = node;
+        }
+    }
+}
+
+//stack Get Min with tuple
+// "Can the stack contain duplicate values?"
+// What should GetMin() or Top() return if the stack is empty?
+// Are negative integers allowed?
+// 
+public class MinStack
+{
+    private Stack<(int Value, int Min)> _stack;
+
+    public MinStack()
+    {
+        _stack = new Stack<(int, int)>();
+    }
+
+    public void Push(int x)
+    {
+        var min = _stack.Any() ? Math.Min(x, GetMin()) : x;
+        _stack.Push(new ValueTuple<int, int>(x, min));
+    }
+
+    public void Pop()
+    {
+        _stack.Pop();
+    }
+
+    public int Top()
+    {
+        return _stack.Peek().Value;
+    }
+
+    public int GetMin()
+    {
+        return _stack.Peek().Min;
+    }
+}
+
+// T : o(1)
+// S : o(n)
+public class MinStak
+{
+
+    private Stack<int> mainStack;
+    private Stack<int> minStak;
+
+    public MinStak()
+    {
+        mainStack = new Stack<int>();
+        minStak = new Stack<int>();
+    }
+
+    public void Push(int val)
+    {
+        mainStack.Push(val);
+        if (minStak.Count == 0 || val <= minStak.Peek())
+        {
+            minStak.Push(val);
+        }
+        else
+        {
+            minStak.Push(minStak.Peek());
         }
     }
 
-    public class BinaryTree
+    public void Pop()
     {
-        public TreeNode root;
-
-        //Maximum depth of a tree Recursive
-
-
-
+        mainStack.Pop();
+        minStak.Pop();
     }
 
-    public class MergeList
+    public int Top()
     {
-
-        public ListNode head;
-        public void addToTheLast(ListNode node)
-        {
-            if (head == null)
-            {
-                head = node;
-            }
-            else
-            {
-                ListNode temp = head;
-                while (temp.next != null)
-                    temp = temp.next;
-                temp.next = node;
-            }
-        }
+        return mainStack.Peek();
     }
 
-    //stack Get Min with tuple
-    public class MinStack
+    public int GetMin()
     {
-        private Stack<(int Value, int Min)> _stack;
+        return minStak.Peek();
+    }
+}
 
-        public MinStack()
-        {
-            _stack = new Stack<(int, int)>();
-        }
-
-        public void Push(int x)
-        {
-            var min = _stack.Any() ? Math.Min(x, GetMin()) : x;
-            _stack.Push(new ValueTuple<int, int>(x, min));
-        }
-
-        public void Pop()
-        {
-            _stack.Pop();
-        }
-
-        public int Top()
-        {
-            return _stack.Peek().Value;
-        }
-
-        public int GetMin()
-        {
-            return _stack.Peek().Min;
-        }
+public class ListNode
+{
+    public int val;
+    public ListNode next;
+    public ListNode(int val = 0, ListNode next = null)
+    {
+        this.val = val;
+        this.next = next;
     }
 
-    public class ListNode
+    public static ListNode BuildList(int[] values)
     {
-        public int val;
-        public ListNode next;
-        public ListNode(int val = 0, ListNode next = null)
+        var dummy = new ListNode(0);
+        var curr = dummy;
+        foreach (var val in values)
         {
-            this.val = val;
-            this.next = next;
+            curr.next = new ListNode(val);
+            curr = curr.next;
         }
+        return dummy.next;
     }
+}
 
-    public class DllNode
+public class DllNode
+{
+    public int val;
+    public DllNode next;
+    public DllNode prev;
+    public DllNode(int val = 0, DllNode next = null, DllNode prev = null)
     {
-        public int val;
-        public DllNode next;
-        public DllNode prev;
-        public DllNode(int val = 0, DllNode next = null, DllNode prev = null)
-        {
-            this.val = val;
-            this.next = next;
-            this.prev = prev;
-        }
+        this.val = val;
+        this.next = next;
+        this.prev = prev;
     }
+}
+
+public class Node { public int cost; public Node[] children; public Node parent; public Node(int cost) { this.cost = cost; children = null; parent = null; } }
